@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Asynchronous processing model</title>
+  </head>
+  <body>
+    <!-- 서버에 데이터 get으로 요청해서 불러오기 (form 태그 사용) -->
+    <form action="https://codingapple1.github.io/price.json" method="get">
+      <button type="submit">버튼</button>
+    </form>
+
+    <script>
+      // 서버에 데이터 요청해서 몰래 가져오기 (몰래 가져오기 버전)
+      fetch('https://codingapple1.github.io/price.json')
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('400 or 500 error!!');
+          }
+          return response.json();
+        })
+        .then((result) => {
+          console.log(result);
+        })
+        .catch(() => {
+          console.log('error!!');
+        });
+    </script>
+  </body>
+</html>

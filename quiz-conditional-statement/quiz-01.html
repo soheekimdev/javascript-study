@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>온도에 따른 의상 추천하기</title>
+  </head>
+  <body>
+    <script>
+      /*
+        문제 1: 온도에 따른 의상 추천하기
+        문제 설명: 사용자로부터 현재 온도를 입력받아, 온도에 따라 의상을 추천하는 프로그램을 작성하세요.
+        조건:
+          25도 이상이면 "반팔 티셔츠를 추천합니다."
+          10도 이상 25도 미만이면 "긴팔 티셔츠를 추천합니다."
+          0도 이상 10도 미만이면 "자켓을 추천합니다."
+          0도 미만이면 "코트를 추천합니다."
+      */
+
+      /******* 풀이 및 코드 *******/
+
+      // 온도 체크 함수
+      // temp로는 숫자가 입력되어야 함.
+      const checkTemp = (temp) => {
+        if (25 <= temp) {
+          alert(`${temp}도군요!\n반팔 티셔츠를 추천합니다.`);
+        } else if (10 <= temp && temp < 25) {
+          alert(`${temp}도군요!\n긴팔 티셔츠를 추천합니다.`);
+        } else if (0 <= temp && temp < 10) {
+          alert(`${temp}도군요!\n자켓을 추천합니다.`);
+        } else {
+          alert(`${temp}도군요!\n코트를 추천합니다.`);
+        }
+      };
+
+      // 사용자로부터 현재 온도 입력 받기
+      const temp = prompt('현재 온도를 정수로 입력해 주세요.\n예) 32').replaceAll(' ', '');
+
+      // 정수여부 체크
+      if (!Number.isInteger(+temp)) {
+        alert(`정수만 입력해 주세요. 예) 28\n입력하신 값은 "${temp}"입니다.`);
+        console.log(`입력 값: ${temp}`);
+      } else {
+        checkTemp(temp);
+        console.log(`입력 값: ${temp}`);
+      }
+    </script>
+  </body>
+</html>

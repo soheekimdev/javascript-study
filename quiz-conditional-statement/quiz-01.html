@@ -22,27 +22,37 @@
       // 온도 체크 함수
       // temp로는 숫자가 입력되어야 함.
       const checkTemp = (temp) => {
-        if (25 <= temp) {
-          alert(`${temp}도군요!\n반팔 티셔츠를 추천합니다.`);
-        } else if (10 <= temp && temp < 25) {
-          alert(`${temp}도군요!\n긴팔 티셔츠를 추천합니다.`);
-        } else if (0 <= temp && temp < 10) {
-          alert(`${temp}도군요!\n자켓을 추천합니다.`);
+        let recommend;
+        if (temp >= 25) {
+          recommend = '반팔 티셔츠를';
+        } else if (temp >= 10) {
+          recommend = '긴팔 티셔츠를';
+        } else if (temp >= 0) {
+          recommend = '자켓을';
         } else {
-          alert(`${temp}도군요!\n코트를 추천합니다.`);
+          recommend = '코트를';
         }
+        alert(`${temp}도군요!\n${recommend} 추천합니다.`);
       };
 
       // 사용자로부터 현재 온도 입력 받기
-      const temp = prompt('현재 온도를 정수로 입력해 주세요.\n예) 32').replaceAll(' ', '');
+      const tempInput = prompt('현재 온도를 정수로 입력해주세요.\n예) 32');
 
-      // 정수여부 체크
-      if (!Number.isInteger(+temp)) {
-        alert(`정수만 입력해 주세요. 예) 28\n입력하신 값은 "${temp}"입니다.`);
-        console.log(`입력 값: ${temp}`);
+      // 입력값 검증
+      // 사용자가 취소 버튼을 눌렀거나 아무것도 입력하지 않은 경우
+      if (tempInput === null || tempInput.trim() === '') {
+        alert('온도를 입력해주세요.');
       } else {
-        checkTemp(temp);
-        console.log(`입력 값: ${temp}`);
+        // 공백 제거 후 10진수로 변환
+        const temp = parseInt(tempInput.replaceAll(' ', ''), 10);
+
+        if (isNaN(temp)) {
+          alert(`정수만 입력해주세요. 예) 28\n입력하신 값은 "${tempInput}"입니다.`);
+          console.log(`입력 값: "${tempInput}"`);
+        } else {
+          checkTemp(temp);
+          console.log(`입력 값: "${tempInput}"`);
+        }
       }
     </script>
   </body>

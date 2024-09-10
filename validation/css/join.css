@@ -1,0 +1,93 @@
+@charset "utf-8";
+
+.join {
+  max-width: 600px;
+  margin: auto;
+}
+.join__form {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 24px;
+}
+.join__fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.join__legend {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+.join__col {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.join__row {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+}
+.join__label {
+  font-weight: 600;
+}
+.join__input,
+.join__select,
+.join__textarea {
+  height: 40px;
+  padding: 0 10px;
+  border: 1px solid gray;
+  border-radius: 6px;
+  font-size: 1.6rem;
+}
+.join__input:placeholder-shown,
+.join__textarea:placeholder-shown {
+  color: gray;
+}
+.join__select {
+  padding-right: 32px;
+  background: url('../img/down-arrow.svg') center right 8px no-repeat;
+  background-size: 24px;
+}
+.join__select option:disabled {
+  color: gray;
+}
+.join__textarea {
+  height: 100px;
+  padding: 10px;
+}
+.join__info-msg,
+.join__err-msg {
+  font-size: 1.4rem;
+  margin-top: -4px;
+}
+.join__info-msg {
+  color: gray;
+}
+.join__err-msg {
+  display: none;
+  color: crimson;
+}
+.join__buttons {
+  display: flex;
+  gap: 8px;
+}
+.join__button {
+  flex: 1;
+  height: 40px;
+  padding: 0 16px;
+  border: 1px solid gray;
+  border-radius: 6px;
+  font-size: 1.6rem;
+}
+.join__button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+.join__button--submit {
+  border: 0;
+  background-color: blueviolet;
+  color: white;
+}

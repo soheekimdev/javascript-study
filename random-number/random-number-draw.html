@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>번호 추첨</title>
+  </head>
+  <body>
+    <h1>번호 추첨</h1>
+    <button id="draw">추첨</button>
+    <p id="number"></p>
+
+    <script>
+      // 요소 선택
+      const button = document.getElementById('draw');
+      const p = document.getElementById('number');
+
+      // 최소값, 최대값 설정
+      const MAX_NUM = 10;
+      const MIN_NUM = 1;
+
+      // MIN_NUM 이상 MAX_NUM 이하의 랜덤 숫자를 반환하는 함수
+      const randomNum = () => Math.floor(Math.random() * MAX_NUM + MIN_NUM);
+
+      // 추첨 버튼 이벤트 핸들링
+      button.addEventListener('click', function () {
+        p.textContent = randomNum();
+      });
+    </script>
+  </body>
+</html>

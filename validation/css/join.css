@@ -50,6 +50,7 @@
   padding-right: 32px;
   background: url('../img/down-arrow.svg') center right 8px no-repeat;
   background-size: 24px;
+  cursor: pointer;
 }
 .join__select option:disabled {
   color: gray;
@@ -76,15 +77,19 @@
 }
 .join__button {
   flex: 1;
-  height: 40px;
-  padding: 0 16px;
+  min-height: 40px;
+  padding: 8px 16px;
   border: 1px solid gray;
   border-radius: 6px;
   font-size: 1.6rem;
 }
-.join__button:disabled {
+.join__button:hover {
+  opacity: 0.8;
+}
+.join__button:disabled,
+.join__button:disabled:hover {
   opacity: 0.4;
-  cursor: default;
+  cursor: not-allowed;
 }
 .join__button--submit {
   border: 0;

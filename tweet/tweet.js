@@ -15,26 +15,17 @@ const tweetInput = document.querySelector('#tweetInput'); // 트윗을 입력할
 const tweetsContainer = document.querySelector('#tweets_container'); // 트윗이 게시될 컨테이너
 
 // 입력값 유무에 따른 버튼 비활성화 여부 처리
-const setStateButton = () => {
-  const value = tweetInput.value.trim(); // 사용자 입력 값
-
-  if (value) {
-    tweetButton.disabled = false;
-  } else {
-    tweetButton.disabled = true;
-  }
+const setTweetButtonState = () => {
+  tweetInput.value.trim() ? (tweetButton.disabled = false) : (tweetButton.disabled = true);
 };
 
-// 트윗 추가 함수
-const addTweet = () => {
-  const value = tweetInput.value.trim(); // 사용자 입력 값
-
-  // 트윗 아이템 추가
+// 트윗 요소 생성 함수
+const createTweetElement = (content) => {
   const tweet = document.createElement('div');
   tweet.classList.add('tweet');
 
   const tweetContent = document.createElement('p');
-  tweetContent.textContent = value;
+  tweetContent.textContent = content;
 
   const tweetLikeButton = document.createElement('button');
   tweetLikeButton.classList.add('like-button');
@@ -42,14 +33,21 @@ const addTweet = () => {
 
   tweet.appendChild(tweetContent);
   tweet.appendChild(tweetLikeButton);
-  tweetsContainer.appendChild(tweet);
 
-  tweetInput.value = ''; // 인풋 초기화
-  setStateButton(); // 버튼 상태 초기화
+  return tweet;
+};
+
+// 트윗 추가 함수
+const addTweet = () => {
+  const inputValue = tweetInput.value.trim(); // 사용자 입력 값
+  const tweet = createTweetElement(inputValue);
+  tweetsContainer.appendChild(tweet);
+  tweetInput.value = ''; // 사용자 입력 값 초기화
+  setTweetButtonState();
 };
 
 // 트윗 게시 버튼 이벤트 핸들링
 tweetButton.addEventListener('click', addTweet);
 
 // 입력 값 변경 시 버튼 상태 업데이트
-tweetInput.addEventListener('input', setStateButton);
+tweetInput.addEventListener('input', setTweetButtonState);

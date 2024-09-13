@@ -15,7 +15,7 @@ const tweetInput = document.querySelector('#tweetInput'); // 트윗을 입력할
 const tweetsContainer = document.querySelector('#tweets_container'); // 트윗이 게시될 컨테이너
 
 // 입력값 유무에 따른 '게시' 버튼 비활성화 여부 처리
-const handleTweetButtonState = () => {
+const updateTweetButtonState = () => {
   tweetInput.value.trim() ? (tweetButton.disabled = false) : (tweetButton.disabled = true);
 };
 
@@ -49,11 +49,11 @@ const addTweet = () => {
   const tweet = createTweetElement(inputValue);
   tweetsContainer.appendChild(tweet);
   tweetInput.value = ''; // 사용자 입력 값 초기화
-  handleTweetButtonState();
+  updateTweetButtonState();
 };
 
 // 좋아요 카운트 핸들링 함수
-const handleLikeCount = (event) => {
+const incrementLikeCount = (event) => {
   if (event.target.classList.contains('like-button')) {
     const likeCountEl = event.target.nextSibling;
     const likeCount = parseInt(likeCountEl.textContent);
@@ -65,7 +65,7 @@ const handleLikeCount = (event) => {
 tweetButton.addEventListener('click', addTweet);
 
 // 입력 값 변경 시 버튼 상태 업데이트
-tweetInput.addEventListener('input', handleTweetButtonState);
+tweetInput.addEventListener('input', updateTweetButtonState);
 
 // 좋아요 카운트 핸들링
-tweetsContainer.addEventListener('click', handleLikeCount);
+tweetsContainer.addEventListener('click', incrementLikeCount);

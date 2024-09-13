@@ -13,8 +13,6 @@
 const tweetButton = document.querySelector('#postTweet'); // 트윗 게시 버튼 요소
 const tweetInput = document.querySelector('#tweetInput'); // 트윗을 입력할 input 요소
 const tweetsContainer = document.querySelector('#tweets_container'); // 트윗이 게시될 컨테이너
-const likeButton = document.querySelector('.like-button');
-const likeCount = document.querySelector('.like-counter');
 
 // 입력값 유무에 따른 '게시' 버튼 비활성화 여부 처리
 const handleTweetButtonState = () => {

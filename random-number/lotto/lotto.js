@@ -25,6 +25,12 @@ const initialize = () => {
   todaySpan.textContent = formatDate(new Date());
 };
 
+// 랜덤 숫자 초기화 함수
+const resetRandomNumbers = () => {
+  lottoNumbers = [];
+  numbersDiv.innerHTML = '';
+};
+
 // 화면에 숫자를 그리는 함수
 const paintNumber = (number) => {
   const numberDiv = document.createElement('div');
@@ -35,6 +41,9 @@ const paintNumber = (number) => {
 
 // 랜덤 숫자 생성 함수
 const createRandomNumbers = () => {
+  // 랜덤 숫자 초기화
+  resetRandomNumbers();
+
   // 1~45 사이의 랜덤 숫자 여섯 개를 배열에 추가
   while (lottoNumbers.length < LOTTO_NUMBER_COUNT) {
     let randomNumber = Math.floor(Math.random() * MAX_LOTTO_NUMBER) + 1;
@@ -47,15 +56,8 @@ const createRandomNumbers = () => {
   }
 };
 
-// 랜덤 숫자 초기화 함수
-const resetRandomNumbers = () => {
-  lottoNumbers = [];
-  numbersDiv.innerHTML = '';
-};
-
 // 이벤트 리스너 등록
 drawButton.addEventListener('click', createRandomNumbers);
-resetButton.addEventListener('click', resetRandomNumbers);
 
 // 페이지 로드 시 초기화
 initialize();

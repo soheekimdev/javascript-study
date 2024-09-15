@@ -40,7 +40,7 @@ const createRandomNumbers = () => {
     let randomNumber = Math.floor(Math.random() * MAX_LOTTO_NUMBER) + 1;
 
     // 중복 숫자가 아닐 때만 숫자를 배열에 추가 & 화면에 그리기
-    if (lottoNumbers.indexOf(randomNumber) === -1) {
+    if (!lottoNumbers.includes(randomNumber)) {
       lottoNumbers.push(randomNumber);
       paintNumber(randomNumber);
     }

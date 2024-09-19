@@ -17,25 +17,21 @@
     </div>
 
     <script>
+      const request = new XMLHttpRequest();
       const button = document.getElementById('push');
       const img = document.getElementById('img');
 
+      // 응답 처리 이벤트 리스너
+      request.addEventListener('load', () => {
+        const result = JSON.parse(request.response);
+        img.src = result.message;
+        console.log(result.message);
+      });
+
+      // 버튼 클릭 이벤트 리스너
       button.addEventListener('click', () => {
-        // 비동기 요청을 위한 객체 생성
-        const request = new XMLHttpRequest();
-
-        // open 메소드로 요청 초기화
-        request.open('get', 'https://dog.ceo/api/breeds/image/random');
-
-        // 응답 처리에 대한 이벤트 핸들러 등록
-        request.addEventListener('load', () => {
-          const result = JSON.parse(request.response);
-          img.src = result.message;
-          console.log(result.message);
-        });
-
-        // 요청 보내기
-        request.send();
+        request.open('get', 'https://dog.ceo/api/breeds/image/random'); // open 메소드로 요청 초기화
+        request.send(); // 요청 보내기
       });
     </script>
   </body>

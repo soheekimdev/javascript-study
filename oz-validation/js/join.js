@@ -121,5 +121,18 @@ fieldList.forEach((field) => {
 form.addEventListener('submit', function (e) {
   e.preventDefault();
 
-  // 작업 중
+  console.log(form.elements[id]);
+
+  container.innerHTML = `
+    <h1>회원가입이 완료되었습니다</h1>
+    <p>회원가입 시 입력하신 정보는 다음과 같습니다.</p>
+    <ul>
+      <li>아이디: ${form.elements['id'].value}</li>
+      <li>이름: ${form.elements['name'].value}</li>
+      <li>휴대폰 번호: ${form.elements['phone'].value}</li>
+      <li>원하는 직무: ${form.elements['position'].value}</li>
+      <li>이메일: ${form.elements['email'].value}</li>
+      <li>자기소개: ${form.elements['intro'].value}</li>
+    </ul>
+  `;
 });

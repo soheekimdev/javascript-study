@@ -1,7 +1,7 @@
 'use strict';
 
 /*
-과제: 
+요구사항: 
   1. 제출 이벤트를 받는다 (이벤트 핸들링)
   2. 제출된 입력 값들을 참조한다
   3. 입력값에 문제가 있는 경우 이를 감지한다
@@ -21,6 +21,7 @@ const letterCheck = {
 };
 
 // ------ 요소 선택 ------
+const container = document.querySelector('.join');
 const form = document.getElementById('form');
 const btnSubmit = document.getElementById('btnSubmit');
 
@@ -67,13 +68,6 @@ const fieldList = [
     condition: (value) => value.trim() !== '',
     errMsg: '원하는 직무를 선택하세요.',
   },
-  // {
-  //   name: 'gender',
-  //   condition: (value) =>
-  //     value.trim() !== ''
-  //   ,
-  //   errMsg: '성별을 선택하세요.',
-  // },
   {
     name: 'email',
     condition: (value) => letterCheck.checkEmail.test(value),
@@ -87,7 +81,16 @@ const fieldList = [
 ];
 
 // ------ 유효성 검사 ------
-let isValid = false;
+let fieldValidStatus = {};
+fieldList.forEach((field) => {
+  fieldValidStatus[field.name] = false;
+});
+
+// 가입하기 버튼 상태 업데이트 함수
+const updateSubmitButtonState = () => {
+  const allFieldsValid = Object.values(fieldValidStatus).every((status) => status === true);
+  btnSubmit.disabled = !allFieldsValid;
+};
 
 // 유효성 검사 함수
 const validCheck = (field, form) => {
@@ -97,12 +100,15 @@ const validCheck = (field, form) => {
 
   if (field.condition(value, form)) {
     errMsgEl.style.display = 'none';
-    return true;
+    fieldValidStatus[field.name] = true;
   } else {
     errMsgEl.innerHTML = field.errMsg;
     errMsgEl.style.display = 'block';
-    return false;
+    fieldValidStatus[field.name] = false;
   }
+
+  updateSubmitButtonState();
+  return fieldValidStatus[field.name];
 };
 
 // 각 필드에 대해 유효성 검사 진행
@@ -114,5 +120,6 @@ fieldList.forEach((field) => {
 // ------ 폼 제출 이벤트 핸들러 ------
 form.addEventListener('submit', function (e) {
   e.preventDefault();
+
   // 작업 중
 });

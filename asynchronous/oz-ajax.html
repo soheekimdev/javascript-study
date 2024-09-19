@@ -6,16 +6,29 @@
     <title>데이터 통신</title>
   </head>
   <body>
+    <button id="push">PUSH</button>
+    <img id="img" src="" alt="강아지 사진" />
+
     <script>
       const request = new XMLHttpRequest(); // 비동기 요청을 위한 객체 생성
-      request.open('get', 'https://dog.ceo/api/breeds/image/random'); // open 메소드로 요청 초기화
+      const button = document.getElementById('push');
 
-      // 응답 처리에 대한 이벤트 핸들러 등록
-      request.addEventListener('load', () => {
-        console.log(JSON.parse(request.response));
+      button.addEventListener('click', () => {
+        // open 메소드로 요청 초기화
+        request.open('get', 'https://dog.ceo/api/breeds/image/random');
+
+        // 응답 처리에 대한 이벤트 핸들러 등록
+        request.addEventListener('load', () => {
+          const result = JSON.parse(request.response);
+          const img = document.getElementById('img');
+          img.src = result.message
+
+          console.log(result.message);
+        });
+
+        // 요청 보내기
+        request.send();
       });
-
-      request.send(); // 요청 보내기
     </script>
   </body>
 </html>
